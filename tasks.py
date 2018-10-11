@@ -26,7 +26,7 @@ def build(c, docs=False):
 
 
 @task
-def install_requirements(c):
+def install_dev_req(c):
     dev_requires = [
         'ipython',
         'ipdb',
@@ -45,7 +45,18 @@ def install_requirements(c):
     c.run("pip install {}".format(' '.join(requires)))
 
 @task
-def install_packages(c):
-    # d = str(here / 'eyes_core')
-    d = str(here / 'eyes_selenium')
-    c.run("pip install -U {}".format(d))
+def install_packages(c, core=None,
+                     selenium=None, images=None):
+    packages = []
+    core_pkg = str(here / 'eyes_core')
+    selenium_pkg = str(here / 'eyes_selenium')
+    images_pkg = str(here / 'eyes_images')
+    if core:
+        packages.append(core_pkg)
+    if selenium:
+        packages.append(selenium_pkg)
+    if images:
+        packages.append(images_pkg)
+    if not packages:
+        packages = [core_pkg, selenium_pkg]  # TODO: add images_pkg
+    c.run("pip install -U {}".format(' '.join(packages)))
