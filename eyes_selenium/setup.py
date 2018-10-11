@@ -17,7 +17,7 @@ def read(filename: str):
 
 INSTALL_REQUIRES = [
     # 'appltiools_core>=0.1.0',
-    'selenium>=3.14.0',
+    'eyes_selenium>=3.14.0',
     'tinycss2>=0.6.1'
 ]
 
@@ -26,7 +26,7 @@ if sys.version_info < (3, 5):
     INSTALL_REQUIRES.append('typing >= 3.5.2')
 
 # preventing ModuleNotFoundError caused by importing lib before installing deps
-with open(str(here/'applitools/selenium/__version__.py'), 'r') as f:
+with open(str(here/'applitools/eyes_selenium/__version__.py'), 'r') as f:
     try:
         VERSION = re.findall(r"^__version__ = '([^']+)'\r?$",
                              f.read(), re.M)[0]
@@ -35,7 +35,7 @@ with open(str(here/'applitools/selenium/__version__.py'), 'r') as f:
 
 
 setup(
-    name='applitools_selenium',
+    name='applitools_eyes_selenium',
     version=VERSION,
     packages=find_namespace_packages(include=['applitools.*']),
     url='http://www.applitools.com',
@@ -57,14 +57,14 @@ setup(
         "Topic :: Software Development :: Quality Assurance",
         "Topic :: Software Development :: Testing"
     ],
-    keywords='applitools eyes selenium',
+    keywords='applitools eyes eyes_selenium',
     install_requires=INSTALL_REQUIRES,
     package_data={
         '': ['README.rst', 'LICENSE'],
-        'core': ['py.typed'],
+        'eyes_core': ['py.typed'],
     },
     project_urls={
         'Bug Reports': 'https://github.com/applitools/eyes.sdk.python/issues',
-        'Source': 'https://github.com/applitools/eyes.sdk.python/tree/master/eyes_selenium/applitools/core',
+        'Source': 'https://github.com/applitools/eyes.sdk.python/tree/master/eyes_selenium/applitools/eyes_core',
     },
 )
